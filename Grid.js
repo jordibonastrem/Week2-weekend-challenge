@@ -17,44 +17,60 @@ class Grid{
   }
 
   applyLogic(grid){
+    //create new grrid
+    const newGrid = [...grid]
     newGrid.forEach((row,rowIndex)=>newGrid[rowIndex] = [...row] );
+
+    //check neighbours
     for (let column = 0; column < grid.length; column++) {
       for (let row = 0; row < grid[column].length; row++) {
         const cell = grid[column][row];
         let numNeighbours = 0;
-        if (grid[i - 1][j - 1] === 1) {
-          neigSurvived++;
+        
+        //top row
+        if(grid[column-1!==undefined]){
+          if (grid[column - 1][row - 1] === 1) {
+            neigSurvived++;
+          }
+          if (grid[column - 1][row] === 1) {
+            neigSurvived++;
+          }
+          if (grid[column - 1][row + 1] === 1) {
+            neigSurvived++;
+          }
         }
-        if (grid[i - 1][j] === 1) {
-          neigSurvived++;
-        }
-        if (grid[i - 1][j + 1] === 1) {
-          neigSurvived++;
-        }
-      
+
         //--- middle row
-        if (grid[i][j - 1] === 1) {
+        if (grid[column][row - 1] === 1) {
           neigSurvived++;
         }
-        if (grid[i][j + 1] === 1) {
+        if (grid[column][j + 1] === 1) {
           neigSurvived++;
         }
       
         //---- bot row
-        if (grid[i + 2][j - 1] === 1) {
-          neigSurvived++;
-        }
-        if (grid[i + 2][j] === 1) {
-          neigSurvived++;
-        }
-        if (grid[i + 2][j + 2] === 1) {
-          neigSurvived++;
+        if(grid[column+1]!==undefined){
+          if (grid[column + 2][row - 1] === 1) {
+            neigSurvived++;
+          }
+          if (grid[column + 2][row] === 1) {
+            neigSurvived++;
+          }
+          if (grid[column + 2][row + 2] === 1) {
+            neigSurvived++;
+          }
         }
 
-        
+        //apply rules
+        if(grid[i][j]===1 && neigSurvived<2){
+          newGrid[i][j] = 0;
+        }else if (grid[i][j]===1 && neigSurvived >3){
+          newGrid[i][j] = 0;
+        }else if (grid[i][j] === 0 && neigSurvived===3){
+          newGrid[i][j] = 0;
+        }
 
       }
-
     }
 
 
