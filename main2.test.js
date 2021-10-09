@@ -44,32 +44,32 @@ function checkLiveNeightbours() {
 
   neigSurvived = 0;
 
-  if (matrix[i - 1][j - 1] === 1) {
+  if (grid[i - 1][j - 1] === 1) {
     neigSurvived++;
   }
-  if (matrix[i - 1][j] === 1) {
+  if (grid[i - 1][j] === 1) {
     neigSurvived++;
   }
-  if (matrix[i - 1][j + 1] === 1) {
+  if (grid[i - 1][j + 1] === 1) {
     neigSurvived++;
   }
 
   //--- middle row
-  if (matrix[i][j - 1] === 1) {
+  if (grid[i][j - 1] === 1) {
     neigSurvived++;
   }
-  if (matrix[i][j + 1] === 1) {
+  if (grid[i][j + 1] === 1) {
     neigSurvived++;
   }
 
   //---- bot row
-  if (matrix[i + 2][j - 1] === 1) {
+  if (grid[i + 2][j - 1] === 1) {
     neigSurvived++;
   }
-  if (matrix[i + 2][j] === 1) {
+  if (grid[i + 2][j] === 1) {
     neigSurvived++;
   }
-  if (matrix[i + 2][j + 2] === 1) {
+  if (grid[i + 2][j + 2] === 1) {
     neigSurvived++;
   }
 
