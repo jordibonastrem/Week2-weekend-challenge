@@ -35,6 +35,7 @@ function paintGrid(grid,ctx,cellSize) {
 
 function checkLiveNeightboursAndApplyRules(grid) {
   neigSurvived = 0 ;
+
   for (let i = 0; i < grid.length; i++) {
     for (let j = 0; j < grid[i].length; j++) {
 
@@ -82,6 +83,7 @@ function checkLiveNeightboursAndApplyRules(grid) {
   return newGrid;
 }
 
+
 function isEdge(grid){
   for (let i = 0; i < grid.length; i++) {
     for (let j = 0; j < grid[i].length; j++) {
@@ -99,6 +101,23 @@ function applyLogic(grid){
   newGrid.forEach((row,rowIndex)=>newGrid[rowIndex] = [...row] );
   newGrid = checkLiveNeightboursAndApplyRules(grid);
 
+
+function isEdge(grid){
+  for (let i = 0; i < grid.length; i++) {
+    for (let j = 0; j < grid[i].length; j++) {
+      if(i===0 || i===grid[i].length-1||j==0||j===grid.length-1){
+        return true;
+      }else{
+        return false;
+      }
+    }
+  }
+}
+
+function applyLogic(grid){
+  const newGrid = [...grid]
+  newGrid.forEach((row,rowIndex)=>newGrid[rowIndex] = [...row] );
+  newGrid = checkLiveNeightboursAndApplyRules(grid);
 }
 
 function mainLoop(){
