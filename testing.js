@@ -1,40 +1,40 @@
 // function isCellAliveOrDead(cell) {
 //   return cell === 1;
 // }
-// function checkLiveNeightbours(matrix, i, j) {
-//   console.log(matrix[i][j]);
-//   // neigSurvived = 0;
+// function checkLiveNeightbours() {
 
-//   // if (matrix[i - 1][j - 1] === 1) {
-//   //   neigSurvived++;
-//   // }
-//   // if (matrix[i - 1][j] === 1) {
-//   //   neigSurvived++;
-//   // }
-//   // if (matrix[i - 1][j + 1] === 1) {
-//   //   neigSurvived++;
-//   // }
+//   neigSurvived = 0;
 
-//   // //--- middle row
-//   // if (matrix[i][j - 1] === 1) {
-//   //   neigSurvived++;
-//   // }
-//   // if (matrix[i][j + 1] === 1) {
-//   //   neigSurvived++;
-//   // }
+//   if (matrix[i - 1][j - 1] === 1) {
+//     neigSurvived++;
+//   }
+//   if (matrix[i - 1][j] === 1) {
+//     neigSurvived++;
+//   }
+//   if (matrix[i - 1][j + 1] === 1) {
+//     neigSurvived++;
+//   }
 
-//   // //---- bot row
-//   // if (matrix[i + 2][j - 1] === 1) {
-//   //   neigSurvived++;
-//   // }
-//   // if (matrix[i + 2][j] === 1) {
-//   //   neigSurvived++;
-//   // }
-//   // if (matrix[i + 2][j + 2] === 1) {
-//   //   neigSurvived++;
-//   // }
+//   //--- middle row
+//   if (matrix[i][j - 1] === 1) {
+//     neigSurvived++;
+//   }
+//   if (matrix[i][j + 1] === 1) {
+//     neigSurvived++;
+//   }
 
-//   // return neigSurvived;
+//   //---- bot row
+//   if (matrix[i + 2][j - 1] === 1) {
+//     neigSurvived++;
+//   }
+//   if (matrix[i + 2][j] === 1) {
+//     neigSurvived++;
+//   }
+//   if (matrix[i + 2][j + 2] === 1) {
+//     neigSurvived++;
+//   }
+
+//   return neigSurvived;
 // }
 // function paintMatrix(matrix) {
 //   console.table(matrix);
