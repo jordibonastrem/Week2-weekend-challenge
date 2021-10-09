@@ -69,14 +69,23 @@ class Grid{
         }else if (grid[i][j] === 0 && neigSurvived===3){
           newGrid[i][j] = 0;
         }
-
       }
     }
-
-
+    return newGrid;
   }
 
   paintGrid(){
+    for (let col = 0; col < grid.length; col++) {
+      for (let row = 0; row < grid[col].length; row++) {
+        const cell = grid[col][row];
+  
+        ctx.beginPath();
+        ctx.rect(col * cellSize, row * cellSize, cellSize, cellSize);
+        ctx.fillStyle = getCellColor(grid[col][row]);
+  
+        ctx.fill();
+      }
+    }
 
   }
 
