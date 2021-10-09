@@ -1,12 +1,12 @@
 const canvas = document.querySelector("canvas");
 const ctx = canvas.getContext("2d");
 
-const resolution = 10;
+const cellSize = 10;
 canvas.width = 800;
 canvas.height = 800;
 
-const COLS = canvas.width / resolution;
-const ROWS = canvas.height / resolution;
+const COLS = canvas.width / cellSize;
+const ROWS = canvas.height / cellSize;
 
 function getCellColor(cell) {
   if (cell === 1) {
@@ -32,10 +32,46 @@ function render(grid) {
       const cell = grid[col][row];
 
       ctx.beginPath();
-      ctx.rect(col * resolution, row * resolution, resolution, resolution);
+      ctx.rect(col * cellSize, row * cellSize, cellSize, cellSize);
       ctx.fillStyle = getCellColor(grid[col][row]);
 
       ctx.fill();
     }
   }
+}
+
+function checkLiveNeightbours() {
+
+  neigSurvived = 0;
+
+  if (matrix[i - 1][j - 1] === 1) {
+    neigSurvived++;
+  }
+  if (matrix[i - 1][j] === 1) {
+    neigSurvived++;
+  }
+  if (matrix[i - 1][j + 1] === 1) {
+    neigSurvived++;
+  }
+
+  //--- middle row
+  if (matrix[i][j - 1] === 1) {
+    neigSurvived++;
+  }
+  if (matrix[i][j + 1] === 1) {
+    neigSurvived++;
+  }
+
+  //---- bot row
+  if (matrix[i + 2][j - 1] === 1) {
+    neigSurvived++;
+  }
+  if (matrix[i + 2][j] === 1) {
+    neigSurvived++;
+  }
+  if (matrix[i + 2][j + 2] === 1) {
+    neigSurvived++;
+  }
+
+  return neigSurvived;
 }
