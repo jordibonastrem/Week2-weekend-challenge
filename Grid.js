@@ -3,11 +3,12 @@ class Grid{
   ctx = canvas.getContext('2d');
 
   constructor(width,height,resolution){
-    this.width = width;
-    this.height = height;
+    canvas.width = width;
+    canvas.height = height;
+
     this.resolution = resolution;
-    this.columns = canvas.width / resolution;
-    this.rows = canvas.height / resolution;
+    this.columns = width / resolution;
+    this.rows = height / resolution;
   }
 
   generateGrid(){
@@ -23,62 +24,62 @@ class Grid{
     }
   }
 
-  applyLogic(grid){
+  applyLogic(){
     //create new grrid
-    const newGrid = [...grid]
+    const newGrid = [...this.grid]
     newGrid.forEach((row,rowIndex)=>newGrid[rowIndex] = [...row] );
 
     //check neighbours
-    for (let column = 0; column < grid.length; column++) {
-      for (let row = 0; row < grid[column].length; row++) {
-        const cell = grid[column][row];
-        let numNeighbours = 0;
+    for (let column = 0; column < this.grid.length; column++) {
+      for (let row = 0; row < this.grid[column].length; row++) {
+        const cell = this.grid[column][row];
+        let neigSurvived = 0;
         
         //top row
-        if(grid[column-1!==undefined]){
-          if (grid[column - 1][row - 1] === 1) {
+        if(this.grid[column-1!==undefined]){
+          if (this.grid[column - 1][row - 1] === 1) {
             neigSurvived++;
           }
-          if (grid[column - 1][row] === 1) {
+          if (this.grid[column - 1][row] === 1) {
             neigSurvived++;
           }
-          if (grid[column - 1][row + 1] === 1) {
+          if (this.grid[column - 1][row + 1] === 1) {
             neigSurvived++;
           }
         }
 
         //--- middle row
-        if (grid[column][row - 1] === 1) {
+        if (this.grid[column][row - 1] === 1) {
           neigSurvived++;
         }
-        if (grid[column][j + 1] === 1) {
+        if (this.grid[column][row + 1] === 1) {
           neigSurvived++;
         }
       
         //---- bot row
-        if(grid[column+1]!==undefined){
-          if (grid[column + 2][row - 1] === 1) {
-            neigSurvived++;
-          }
-          if (grid[column + 2][row] === 1) {
-            neigSurvived++;
-          }
-          if (grid[column + 2][row + 2] === 1) {
-            neigSurvived++;
-          }
-        }
+        // if(this.grid[column+1]!==undefined){
+        //   if (this.grid[column + 2][row - 1] === 1) {
+        //     neigSurvived++;
+        //   }
+        //   if (this.grid[column + 2][row] === 1) {
+        //     neigSurvived++;
+        //   }
+        //   if (this.grid[column + 2][row + 2] === 1) {
+        //     neigSurvived++;
+        //   }
+        // }
 
         //apply rules
-        if(grid[i][j]===1 && neigSurvived<2){
-          newGrid[i][j] = 0;
-        }else if (grid[i][j]===1 && neigSurvived >3){
-          newGrid[i][j] = 0;
-        }else if (grid[i][j] === 0 && neigSurvived===3){
-          newGrid[i][j] = 0;
+        if(this.grid[column][row]===1 && neigSurvived<2){
+          newGrid[column][row] = 0;
+        }else if (this.grid[column][row]===1 && neigSurvived >3){
+          newGrid[column][row] = 0;
+        }else if (this.grid[column][row] === 0 && neigSurvived===3){
+          newGrid[column][row] = 0;
         }
       }
     }
-    return newGrid;
+    this.grid = newGrid;
   }
 
   paintGrid(){
@@ -101,4 +102,12 @@ class Grid{
 
 g = new Grid(800,800,10);
 g.generateGrid();
-g.paintGrid();
+
+for( i =0;i<5;i++){
+
+  g.applyLogic();
+  g.paintGrid();
+  
+}
+
+
