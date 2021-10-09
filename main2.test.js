@@ -24,9 +24,9 @@ function buildGrid() {
     );
 }
 const grid = buildGrid();
-render(grid);
+paintGrid(grid);
 
-function render(grid) {
+function paintGrid(grid) {
   for (let col = 0; col < grid.length; col++) {
     for (let row = 0; row < grid[col].length; row++) {
       const cell = grid[col][row];
