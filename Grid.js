@@ -11,9 +11,16 @@ class Grid{
   }
 
   generateGrid(){
-    return new Array(COLS).fill(null)
-    .map(() => new Array(ROWS).fill(null)
+    this.grid = new Array(this.columns).fill(null)
+    .map(() => new Array(this.rows).fill(null)
       .map(() => Math.floor(Math.random() * 2)));
+  }
+  getCellColor(cell) {
+    if (cell === 1) {
+      return "white";
+    } else {
+      return "black";
+    }
   }
 
   applyLogic(grid){
@@ -75,19 +82,23 @@ class Grid{
   }
 
   paintGrid(){
-    for (let col = 0; col < grid.length; col++) {
-      for (let row = 0; row < grid[col].length; row++) {
-        const cell = grid[col][row];
+    for (let column = 0; column < this.grid.length; column++) {
+      for (let row = 0; row < this.grid[column].length; row++) {
+        const cell = this.grid[column][row];
   
-        ctx.beginPath();
-        ctx.rect(col * cellSize, row * cellSize, cellSize, cellSize);
-        ctx.fillStyle = getCellColor(grid[col][row]);
+        this.ctx.beginPath();
+        this.ctx.rect(column * this.resolution, row * this.resolution, this.resolution, this.resolution);
+        this.ctx.fillStyle = this.getCellColor(this.grid[column][row]);
   
-        ctx.fill();
+        this.ctx.fill();
       }
     }
-
   }
 
 
+
 }
+
+g = new Grid(800,800,10);
+g.generateGrid();
+g.paintGrid();
