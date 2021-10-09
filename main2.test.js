@@ -30,6 +30,45 @@ function paintGrid(grid,ctx,cellSize) {
 
 function checkLiveNeightbours(grid) {
   neigSurvived = 0;
+  // for (let col = 0; col < grid.length; col++) {
+  //   for (let row = 0; row < grid[col].length; row++) {
+  //     if (grid[i - 1][j - 1] === 1) {
+  //       neigSurvived++;
+  //     }
+  //     if (grid[i - 1][j] === 1) {
+  //       neigSurvived++;
+  //     }
+  //     if (grid[i - 1][j + 1] === 1) {
+  //       neigSurvived++;
+  //     }
+    
+  //     //--- middle row
+  //     if (grid[i][j - 1] === 1) {
+  //       neigSurvived++;
+  //     }
+  //     if (grid[i][j + 1] === 1) {
+  //       neigSurvived++;
+  //     }
+    
+  //     //---- bot row
+  //     if (grid[i + 2][j - 1] === 1) {
+  //       neigSurvived++;
+  //     }
+  //     if (grid[i + 2][j] === 1) {
+  //       neigSurvived++;
+  //     }
+  //     if (grid[i + 2][j + 2] === 1) {
+  //       neigSurvived++;
+  //     }
+  //   }
+  // }
+  return neigSurvived;
+}
+
+function applyLogic(grid){
+  const newGrid = [...grid]
+  newGrid.forEach((row,rowIndex)=>newGrid[rowIndex] = [...row] );
+
   for (let col = 0; col < grid.length; col++) {
     for (let row = 0; row < grid[col].length; row++) {
       if (grid[i - 1][j - 1] === 1) {
@@ -61,18 +100,15 @@ function checkLiveNeightbours(grid) {
         neigSurvived++;
       }
 
+      if(grid[i][j]===1 && neigSurvived<2){
+        newGrid[i][j] = 0;
+      }else if (grid[i][j]===1 && neigSurvived >3){
+        newGrid[i][j] = 0;
+      }else if (grid[i][j] === 0 && nneigSurvived===3){
+        newGrid[i][j] = 0;
+      }
     }
-
   }
-  
-  return neigSurvived;
-}
-
-function applyLogic(grid){
-  const newGrid = [...grid]
-  newGrid.forEach((row,rowIndex)=>newGrid[rowIndex] = [...row] );
-
-  
 
 }
 
