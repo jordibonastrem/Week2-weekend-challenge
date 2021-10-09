@@ -16,5 +16,25 @@ class Grid{
       .map(() => Math.floor(Math.random() * 2)));
   }
 
+  applyLogic(grid){
+    newGrid.forEach((row,rowIndex)=>newGrid[rowIndex] = [...row] );
+    for (let column = 0; column < grid.length; column++) {
+      for (let row = 0; row < grid[column].length; row++) {
+        const cell = grid[column][row];
+        let numNeighbours = 0;
+
+        
+
+      }
+
+    }
+
+
+  }
+
+  paintGrid(){
+
+  }
+
 
 }
