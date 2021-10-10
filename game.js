@@ -73,7 +73,7 @@ function render(grid) {
       }else{
         canvasContext.fillStyle= 'black';
       }
-      // canvasContext.fillStyle = cell ? 'black' : 'white';
+
       canvasContext.fill();
     }
   }
