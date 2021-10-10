@@ -17,13 +17,6 @@ function buildGrid() {
 
 let grid = buildGrid();
 
-requestAnimationFrame(update);
-
-function update() {
-  grid = nextGen(grid);
-  render(grid);
-  requestAnimationFrame(update);
-}
 
 function nextGen(grid) {
   const nextGen = grid.map(arr => [...arr]);
@@ -32,44 +25,28 @@ function nextGen(grid) {
     for (let row = 0; row < grid[col].length; row++) {
       const cell = grid[col][row];
       let numNeighbours = 0;
-             
-        //top row
-        if(grid[col-1!==undefined]){
-          if (grid[col - 1][row] === 1) {
-            numNeighbours++;
-          }
-          if (grid[col - 1][row - 1] === 1) {
-            numNeighbours++;
-          }
-          if (grid[col - 1][row + 1] === 1) {
-            numNeighbours++;
-          }
-        }
-        
-
-        //--- middle row
-        if (grid[col][row - 1] === 1) {
-          numNeighbours++;
-        }
-        if (grid[col][row + 1] === 1) {
-          numNeighbours++;
-        }
-
-        //bot row
-        if(grid[col+1]!==undefined){
-          if (grid[col + 1][row] === 1) {
-            numNeighbours++;
-          }
-          if (grid[col + 1][row -1] === 1) {
-            numNeighbours++;
-          }
-          if (grid[col + 1][row + 1] === 1) {
-            numNeighbours++;
-          }
-
-        }
-        
       
+      
+      if (grid[col - 1] !== undefined && grid[col - 1] !== undefined ) {
+        if (grid[col - 1][row - 1] === 1) numNeighbours++;
+        if (grid[col - 1][row + 1] === 1) numNeighbours++;
+      }
+ 
+      if (grid[col + 1] !== undefined && grid[col + 1] !== undefined) {
+        if (grid[col + 1][row - 1] === 1) numNeighbours++;
+        if (grid[col + 1][row + 1] === 1) numNeighbours++;
+      }
+
+      if (grid[col - 1] !== undefined && grid[col + 1] !== undefined) {
+        if (grid[col - 1][row] === 1) numNeighbours++;
+        if (grid[col + 1][row] === 1) numNeighbours++;
+      }
+
+      if (grid[col] !== undefined && grid[col] !== undefined) {
+        if (grid[col][row - 1] === 1) numNeighbours++;
+        if (grid[col][row + 1] === 1) numNeighbours++;
+      }
+
       // rules
       if (cell === 1 && numNeighbours < 2) {
         nextGen[col][row] = 0;
@@ -92,7 +69,20 @@ function render(grid) {
       canvasContext.rect(col * res, row * res, res, res);
       canvasContext.fillStyle = cell ? 'black' : 'white';
       canvasContext.fill();
-      // ctx.stroke();
     }
   }
 }
+
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+requestAnimationFrame(update);
+
+function update() {
+  grid = nextGen(grid);
+  render(grid);
+  sleep(1000);
+  requestAnimationFrame(update);
+}
+
